@@ -1,0 +1,142 @@
+---
+layout: post
+title: Simple Rag
+category: ""
+---
+
+# Install pyenv
+
+```sh
+
+sudo yum install gcc zlib-devel bzip2 bzip2-devel readline readline-devel sqlite sqlite-devel openssl openssl-devel git libffi-devel
+
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+
+if grep "pyenv init -" ~/.bash_profile ] ; then
+  echo "skip."
+else
+  echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bash_profile
+  echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
+fi
+source ~/.bash_profile
+
+pyenv install --list
+pyver="3.13.5"
+pyenv install ${pyver}
+pyenv global  ${pyver}
+
+pyenv rehash
+```
+
+# Install sqlite3 for ChromaDB
+
+```sh
+curl -O https://www.sqlite.org/2025/sqlite-src-3500200.zip
+unzip sqlite-src-3500200.zip
+cd sqlite-src-3500200/
+./configure && make
+sudo make install
+
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+```
+
+# project dir
+
+```sh
+mkdir rag
+cd $_
+
+cat <<'EOF' > requirements.txt
+langchain
+ollama
+faiss-cpu
+langchain-community
+langchain-ollama
+EOF
+
+pip3.13 install -r requirements.txt
+
+mkdir docs
+
+cat <<'EOF' > docs/text.md
+* 猫はニャー
+* 犬ならワン
+* 象はパオーン
+* ライオンガオーッ
+* 人間だもんあかさたなはやまらわおん
+EOF
+ollama pull gemma3n
+```
+
+# Script
+
+```sh
+cat <<'EOF' > build_index3.py
+import glob
+from langchain_community.vectorstores import FAISS
+from langchain_ollama import OllamaEmbeddings, OllamaLLM
+from langchain.text_splitter import CharacterTextSplitter
+from langchain_community.document_loaders import TextLoader
+from langchain.chains import RetrievalQA
+
+# ---------- 設定 ----------
+EMBED_MODEL = "nomic-embed-text"
+LLM_MODEL = "gemma3n"
+DOC_PATTERN = "docs/*.md"
+QUERY = "犬は？"
+
+# ---------- Markdownファイル読み込み ----------
+file_paths = glob.glob(DOC_PATTERN)
+all_docs = []
+
+for path in file_paths:
+    loader = TextLoader(path, encoding="utf-8")
+    docs = loader.load()
+    for doc in docs:
+        doc.metadata["source"] = path  # ファイル名を記録
+    all_docs.extend(docs)
+
+print(f"✅ 読み込んだファイル数: {len(file_paths)}")
+print(f"✅ ドキュメント数: {len(all_docs)}")
+
+# ---------- 分割 ----------
+splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+split_docs = splitter.split_documents(all_docs)
+print(f"✅ チャンク数: {len(split_docs)}")
+
+# ---------- 埋め込みとベクトルストア構築 ----------
+embedder = OllamaEmbeddings(model=EMBED_MODEL)
+vectorstore = FAISS.from_documents(split_docs, embedder)
+
+# ---------- Retriever & LLM ----------
+retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
+llm = OllamaLLM(model=LLM_MODEL)
+
+# ---------- RetrievalQAチェーン ----------
+rag_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=retriever,
+    chain_type="stuff",
+    return_source_documents=True
+)
+
+# ---------- 質問 ----------
+print(f"\n❓ 質問: {QUERY}")
+result = rag_chain.invoke({"query": QUERY})
+
+# ---------- 出力 ----------
+print("\n🧠 回答:\n", result["result"])
+
+print("\n📚 参照ソース:")
+for doc in result["source_documents"]:
+    print(f"- {doc.metadata.get('source', '不明')}")
+    print(doc.page_content[:100].replace("\n", " "), "\n---")
+
+EOF
+```
+
+## Execution
+
+```sh
+python3.13 build_index3.py
+```
