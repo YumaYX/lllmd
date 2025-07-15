@@ -1,8 +1,11 @@
-s:	install
+s:	clean install
 	bundle exec jekyll server --host=0.0.0.0 --port 4007
 
 install:
 	bundle install
+
+clean:
+	rm -rf .jekyll-cache _site
 
 pub:
 	git status
