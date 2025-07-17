@@ -21,4 +21,7 @@ category: ""
     - `gemma3:4b` => `0:14.02elapsed (around 14 seconds)`
     - `gemma3:12b` => `5:37.88elapsed (about 5 and a half minutes)`
     - `gemma3:27b` => `1:33:13elapsed (about 1 and a half hours)`
-
+- Ragを使ってどこまでできるか。
+  - Rubyのドキュメントを食わせて、スクリプトを説明させてみる。
+  - 結果：[RubyDemoDoc](https://yumayx.github.io/rubydemodoc/)
+  - 流石に間違えを含む。
