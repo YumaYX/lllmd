@@ -1,18 +1,25 @@
 ---
 layout: post
-title: Simple Rag
+title: "Simple RAG"
 category: ""
 ---
 
-# Install pyenv
+# Simple RAG: LangChain + Ollama + FAISS を使った簡易RAG構成
+
+Ollama・LangChain・FAISSを使い、ローカル環境でRAG（検索拡張生成）を構築する手順をまとめた実験です。
+
+---
+
+## 1. pyenvのインストール
+
+Python環境のバージョン管理のため `pyenv` を使用します。
 
 ```sh
-
 sudo yum install gcc zlib-devel bzip2 bzip2-devel readline readline-devel sqlite sqlite-devel openssl openssl-devel git libffi-devel
 
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
-if grep "pyenv init -" ~/.bash_profile ] ; then
+if grep "pyenv init -" ~/.bash_profile ; then
   echo "skip."
 else
   echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bash_profile
@@ -24,11 +31,14 @@ pyenv install --list
 pyver="3.13.5"
 pyenv install ${pyver}
 pyenv global  ${pyver}
-
 pyenv rehash
-```
+````
 
-# Install sqlite3 for ChromaDB
+---
+
+## 2. sqlite3のビルド（ChromaDB対応）
+
+ChromaDBやFAISS利用時の依存として最新版の `sqlite3` を使用します。
 
 ```sh
 curl -O https://www.sqlite.org/2025/sqlite-src-3500200.zip
@@ -40,12 +50,17 @@ sudo make install
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 ```
 
-# project dir
+---
+
+## 3. プロジェクト構成
+
+RAGプロジェクトを作成します。
 
 ```sh
 mkdir rag
-cd $_
+cd rag
 
+# 必要なPythonライブラリ
 cat <<'EOF' > requirements.txt
 langchain
 ollama
@@ -55,7 +70,15 @@ langchain-ollama
 EOF
 
 pip3.13 install -r requirements.txt
+```
 
+---
+
+## 4. ドキュメント作成
+
+検索対象となるサンプルドキュメント（Markdown形式）を用意します。
+
+```sh
 mkdir docs
 
 cat <<'EOF' > docs/text.md
@@ -65,13 +88,18 @@ cat <<'EOF' > docs/text.md
 * ライオンガオーッ
 * 人間だもんあかさたなはやまらわおん
 EOF
+
+# モデルのダウンロード（埋め込み用と生成用）
 ollama pull gemma3n
 ```
 
-# Script
+---
 
-```sh
-cat <<'EOF' > build_index3.py
+## 5. スクリプト：build\_index3.py
+
+RAGの構築と問い合わせ処理を行うPythonスクリプトです。
+
+```python
 import glob
 from langchain_community.vectorstores import FAISS
 from langchain_ollama import OllamaEmbeddings, OllamaLLM
@@ -85,7 +113,7 @@ LLM_MODEL = "gemma3n"
 DOC_PATTERN = "docs/*.md"
 QUERY = "犬は？"
 
-# ---------- Markdownファイル読み込み ----------
+# ---------- ドキュメント読み込み ----------
 file_paths = glob.glob(DOC_PATTERN)
 all_docs = []
 
@@ -93,26 +121,25 @@ for path in file_paths:
     loader = TextLoader(path, encoding="utf-8")
     docs = loader.load()
     for doc in docs:
-        doc.metadata["source"] = path  # ファイル名を記録
+        doc.metadata["source"] = path
     all_docs.extend(docs)
 
 print(f"✅ 読み込んだファイル数: {len(file_paths)}")
 print(f"✅ ドキュメント数: {len(all_docs)}")
 
-# ---------- 分割 ----------
+# ---------- 分割処理 ----------
 splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 split_docs = splitter.split_documents(all_docs)
 print(f"✅ チャンク数: {len(split_docs)}")
 
-# ---------- 埋め込みとベクトルストア構築 ----------
+# ---------- ベクトルストア作成 ----------
 embedder = OllamaEmbeddings(model=EMBED_MODEL)
 vectorstore = FAISS.from_documents(split_docs, embedder)
 
-# ---------- Retriever & LLM ----------
+# ---------- RetrievalQA ----------
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 llm = OllamaLLM(model=LLM_MODEL)
 
-# ---------- RetrievalQAチェーン ----------
 rag_chain = RetrievalQA.from_chain_type(
     llm=llm,
     retriever=retriever,
@@ -120,7 +147,7 @@ rag_chain = RetrievalQA.from_chain_type(
     return_source_documents=True
 )
 
-# ---------- 質問 ----------
+# ---------- 問い合わせ ----------
 print(f"\n❓ 質問: {QUERY}")
 result = rag_chain.invoke({"query": QUERY})
 
@@ -131,20 +158,21 @@ print("\n📚 参照ソース:")
 for doc in result["source_documents"]:
     print(f"- {doc.metadata.get('source', '不明')}")
     print(doc.page_content[:100].replace("\n", " "), "\n---")
-
-EOF
 ```
 
-## Execution
+---
+
+## 6. 実行
 
 ```sh
 python3.13 build_index3.py
 ```
 
-### Outcome
+---
+
+## 7. 実行結果（例）
 
 ```
-user@y ~/rag$ python3.13 build_index3.py 
 ✅ 読み込んだファイル数: 1
 ✅ ドキュメント数: 1
 ✅ チャンク数: 1
@@ -154,10 +182,8 @@ user@y ~/rag$ python3.13 build_index3.py
 🧠 回答:
  犬ならワン
 
-
 📚 参照ソース:
-- docs/a.md
+- docs/text.md
 猫はニャー 犬ならワン 象はパオーン ライオンガオーッ 人間だもんあかさたなはやまらわおん 
 ---
-user@y ~/rag$ 
 ```

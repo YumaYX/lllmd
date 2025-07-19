@@ -6,15 +6,21 @@ category: ""
 
 # Ollama with API
 
-## environments
+Ollama をローカル環境で API 経由で使用する方法について説明します。チャット形式やプロンプト形式でのリクエスト、Ruby によるプログラム例、レスポンスからコードブロックだけを抽出する方法などを紹介します。
 
-- host: `localhost`
-- port: `11434`
-- model: `gemma3`
+## 環境
 
-### by chat
+- ホスト: `localhost`
+- ポート: `11434`
+- 使用モデル: `gemma3`
 
-`/api/chat`
+---
+
+## 1. チャット形式でのAPI呼び出し
+
+### エンドポイント: `/api/chat`
+
+ユーザーとアシスタントのメッセージを `messages` 配列で送信します。
 
 ```sh
 curl http://localhost:11434/api/chat \
@@ -26,11 +32,13 @@ curl http://localhost:11434/api/chat \
     ],
     "stream": false
   }' | jq
-```
+````
 
-### chat with history
+---
 
-`/api/chat`
+## 2. 会話履歴付きチャット
+
+会話履歴を保持して文脈のある応答を得る方法です。
 
 ```sh
 curl http://localhost:11434/api/chat \
@@ -47,9 +55,13 @@ curl http://localhost:11434/api/chat \
 }' | jq
 ```
 
-### by prompt
+---
 
-`/api/generate`
+## 3. プロンプト形式でのAPI呼び出し
+
+### エンドポイント: `/api/generate`
+
+プロンプトのみで応答を生成します。
 
 ```sh
 curl http://localhost:11434/api/generate \
@@ -61,48 +73,47 @@ curl http://localhost:11434/api/generate \
   }' | jq
 ```
 
-## program with ruby
+---
+
+## 4. RubyでのAPI呼び出し
+
+Ruby を使って `/api/chat` にPOSTリクエストを送る例です。
 
 ```ruby
 require 'net/http'
 require 'uri'
 require 'json'
 
-# 送信先のURL
 url = URI.parse('http://localhost:11434/api/chat')
 
-# 送信するJSONデータ
 data = {
-    "model": "gemma3",
-    "prompt": "write a simple sample code with ruby.",
-    "stream": false
+  model: "gemma3",
+  messages: [
+    { role: "user", content: "write a simple sample code with ruby." }
+  ],
+  stream: false
 }
 
-# HTTPリクエストを作成
 http = Net::HTTP.new(url.host, url.port)
-http.use_ssl = (url.scheme == "https")
-
-request = Net::HTTP::Post.new(url.path, {
-  'Content-Type' => 'application/json'
-})
-
-# JSONデータをボディに設定
+request = Net::HTTP::Post.new(url.path, { 'Content-Type' => 'application/json' })
 request.body = data.to_json
 
-# リクエスト送信 & レスポンス取得
 response = http.request(request)
 
-# レスポンス出力
 puts "Status: #{response.code}"
 puts "Body: #{response.body}"
 ```
 
-### Commands
+> 💡 `prompt` ではなく `messages` を使う必要があります（APIが `/api/chat` のため）。
 
-#### コードブロックからの抽出
+---
 
-スクリプト、プログラムのみ指定しても、それ以外を出力することが多くある。コードブロックを抽出する必要がある。
+## 5. コードブロックの抽出
 
-```
+生成結果からMarkdownのコードブロック（\`\`\`で囲まれた部分）だけを取り出すには、以下のような `awk` コマンドを使います。
+
+````sh
 awk '/^```/{in_block = !in_block; next} in_block' file.md
-```
+````
+
+このスクリプトは、コードブロックの開始と終了を検出し、その間の行のみを出力します。
