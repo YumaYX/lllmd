@@ -84,13 +84,11 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-url = URI.parse('http://localhost:11434/api/chat')
+url = URI.parse('http://localhost:11434/api/generate')
 
 data = {
   model: "gemma3",
-  messages: [
-    { role: "user", content: "write a simple sample code with ruby." }
-  ],
+  prompt: "write a simple sample code with ruby.",
   stream: false
 }
 
@@ -103,8 +101,6 @@ response = http.request(request)
 puts "Status: #{response.code}"
 puts "Body: #{response.body}"
 ```
-
-`prompt` ではなく `messages` を使う必要があります（APIが `/api/chat` のため）。
 
 ---
 
