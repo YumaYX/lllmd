@@ -104,7 +104,7 @@ puts "Status: #{response.code}"
 puts "Body: #{response.body}"
 ```
 
-> 💡 `prompt` ではなく `messages` を使う必要があります（APIが `/api/chat` のため）。
+`prompt` ではなく `messages` を使う必要があります（APIが `/api/chat` のため）。
 
 ---
 
