@@ -1,0 +1,65 @@
+---
+layout: post
+title: "zram"
+category: ""
+---
+
+# zramの導入
+
+OllamaをCPUモードで動かす際にスワップ領域を大量に使用していたため、圧縮スワップのzramを導入する。
+
+AlmaLinux 9.6では、圧縮メモリスワップであるzramは標準では有効になっていなかった。zramを活用することで、物理メモリ上に圧縮されたスワップ領域を作成でき、ディスクスワップより高速に動作するため、メモリ効率の改善やパフォーマンスの向上が期待できる。
+
+```sh
+dnf install zram-generator
+
+cat << EOF > /etc/systemd/zram-generator.conf
+[zram0]
+zram-size = min(ram / 2, 4096)
+compression-algorithm = zstd
+EOF
+
+systemctl daemon-reload
+swapon -s
+```
+
+- `systemctl daemon-reload`で、再起動せずに設定を適用する。
+
+
+### zramなし
+
+```sh
+swapoff /dev/zram0
+swapon -s
+time ollama run gemma3:12b "hello. response in 10 words"
+```
+
+```
+user@y ~$ time ollama run gemma3:12b "hello. response in 10 words"
+Hello! Happy to chat – what can I do for you?
+
+
+real	5m12.222s
+user	0m0.047s
+sys	0m0.137s
+user@y ~$ 
+```
+
+### zramあり
+
+```sh
+systemctl daemon-reload
+swapon -s
+time ollama run gemma3:12b "hello. response in 10 words"
+```
+
+```
+user@y ~$ time ollama run gemma3:12b "hello. response in 10 words"
+Hello! Ready to assist you – what can I do?
+
+
+real	3m49.738s
+user	0m0.064s
+sys	0m0.098s
+user@y ~$ 
+```
