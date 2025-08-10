@@ -4,6 +4,8 @@ title: "Install nodejs"
 category: ""
 ---
 
+MCPサーバーをインストール/動作させるために、Node.jsをインストールする。
+
 ## Check and Clean Env.
 
 現在の`nodejs`,`npm`のバージョンを調べる。今回は削除も行う。
@@ -13,6 +15,8 @@ dnf list nodejs npm
 
 dnf remove -y nodejs npm
 ```
+
+最新のバージョンじゃないと期待の挙動をしなかったため、デフォルトとものはアンインストールする。
 
 ## Check Modules
 
