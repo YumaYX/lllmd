@@ -4,7 +4,9 @@ title: "Install MCP Agent"
 category: ""
 ---
 
-## Pull MCP Agent
+## Install MCP Agent
+
+`mcp-client-for-ollama`を使用する。venv上に環境を作る。
 
 ```sh
 cd ; mkdir mcpollama && cd mcpollama
@@ -16,7 +18,9 @@ pip3 install --upgrade ollmcp
 
 - <https://github.com/jonigl/mcp-client-for-ollama>
 
-## test run
+## Test Running
+
+MCPサーバーをかませず、実行してみる。`qwen2.5:7b`がデフォルトのため、事前にpullする。
 
 ```sh
 ollama pull qwen2.5:7b
@@ -32,12 +36,17 @@ ollmcp
 
 ### Make a Server Config
 
-- /home/user/myproject
+- 許可するディレクトリ
+  - /home/user/myproject
+- サーバーコンフィグの場所
+  - /tmp/mcpconfig.json
 
 ```sh
 mkdir ${HOME}/myproject
 touch ${HOME}/myproject/sample{0..9}.txt
+```
 
+```sh
 cat <<'EOF' > /tmp/mcpconfig.json
 {
   "mcpServers": {
@@ -59,19 +68,17 @@ EOF
 
 ```sh
 ollmcp -j /tmp/mcpconfig.json
-# -m llama3.2:1b
-
 # > list files in /home/user/myproject
 ```
 
+`list files`だけでは、指定を求められた。
 
 ## Run MCP Server with qwen2.5:14b
 
 ```sh
-ollama pull qwen2.5:7b
+ollama pull qwen2.5:14b
 ```
 
 ```sh
 ollmcp -j /tmp/mcpconfig.json -m qwen2.5:14b
 ```
-
