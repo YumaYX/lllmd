@@ -6,6 +6,8 @@ category: ""
 
 # Install MCP Server File System
 
+Node.jsを使用して、MCPサーバーをインストールする。
+
 ```sh
 # as root or with sudo
 npm install -g @modelcontextprotocol/server-filesystem
