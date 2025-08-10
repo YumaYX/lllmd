@@ -24,8 +24,10 @@ MCPサーバーをかませず、実行してみる。`qwen2.5:7b`がデフォ�
 
 ```sh
 ollama pull qwen2.5:7b
+
 # start
 ollmcp
+
 # > type prompt
 # => Warning: No tools are enabled. Model will respond without tool access.
 ```
