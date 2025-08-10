@@ -38,7 +38,7 @@ ollmcp
 
 - 許可するディレクトリ
   - /home/user/myproject
-- サーバーコンフィグの場所
+- 出力するサーバーコンフィグの場所
   - /tmp/mcpconfig.json
 
 ```sh
@@ -71,7 +71,7 @@ ollmcp -j /tmp/mcpconfig.json
 # > list files in /home/user/myproject
 ```
 
-`list files`だけでは、指定を求められた。
+`list files`だけでは足りず、ディレクトリの指定を求められた。
 
 ## Run MCP Server with qwen2.5:14b
 
