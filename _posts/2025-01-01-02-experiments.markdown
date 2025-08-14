@@ -73,3 +73,24 @@ RAGを用いて、Rubyのドキュメントをベースに、スクリプトの�
 irbで実行させた結果を`gemma3:27b`に食わせて、説明させた。CPU onlyモードであるため、３、４日かかった。
 
 - <https://yumayx.github.io/rubydemodoc/>
+
+
+## 4. MCPクライアント、MCPサーバーの導入
+
+1ショットのプログラムの生成を目指す。
+
+- クライアントに[mcp-client-for-ollama](https://github.com/jonigl/mcp-client-for-ollama)を導入
+- [MCPサーバー](https://github.com/modelcontextprotocol/servers)のeverything, file system, fetchを導入
+
+`qwen2.5`, `qwen3`を中心に1ショットのプログラム生成を目指してプロンプトの流し込み実施。モデルの大きさは14b以下。
+MCP ServerのToolを使うようにプロンプトを書いても、Toolを使う頻度が少ない。そのためファイル出力や、外部からの情報取得の頻度が少なく、MCPの導入の効果が薄い状態。
+
+改善する箇所としては、
+
+- モデルについて
+  - モデルが小さいか、ハードウェアのリソースが必要
+  - プロトコルを作っているClaude系でないとうまくいかないのか。
+- プロンプトが悪いか
+  - 1ショット目指すよりは、小刻みに生成するのか
+
+などが考えられる。ハードウェアリソースが無いため、試行回数限られてくる。
