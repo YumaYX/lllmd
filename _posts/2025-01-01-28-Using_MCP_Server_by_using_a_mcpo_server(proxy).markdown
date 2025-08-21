@@ -4,6 +4,8 @@ title: "Using MCP Server with MCPO server(proxy)"
 category: ""
 ---
 
+# MCP-to-OpenAPI Proxy Server
+
 以前の記事では、特定のLLMのモデルしか使用できなかった。それ以外のモデルを使用したいため、環境を構築する。
 
 ほとんど、リファレンスを参考にした。
