@@ -90,13 +90,13 @@ podman run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=
 
 ### 起動と設定手順/項目
 
-1. 3000番でリッスンしているため、`localhost:3000`にアクセス
+1. `localhost:8080`にアクセス
 1. get started、新規登録。適当に入力。おそらく外部のデータベースとは繋がっていないように見える（見えるだけ）。
 1. Ollamaで使用するモデルをダウンロードする。ホストのollamaを使用する方法が見つけられていない。
 1. MCPツールの設定
     1. ユーザーの`settings`から`tools`を選択
     1. "+"をクリックしてサーバ追加
-        - tool名が`fetch`なら、`http://192.168.11.42:8000/fetch`を入力（ホストのIPアドレスが`192.168.11.42`）。
+        - tool名が`fetch`なら、`http://localhost:8000/fetch`を入力。
         - 更新ボタンを押して、問題ないか確認できる。
         - 使用するツール分だけ追加する。
 
