@@ -72,6 +72,7 @@ irbで実行させた結果を`gemma3:27b`に食わせて、説明させた。CP
 
 - <https://yumayx.github.io/rubydemodoc/>
 
+---
 
 ## 4. MCPクライアント、MCPサーバーの導入
 
@@ -97,7 +98,7 @@ MCP ServerのToolを使うようにプロンプトを書いても、Toolを使�
 
 ## 5. gemma3:27b x MCPサーバー
 
-以下のプロンプトで、実施。
+以下のプロンプトで、実行。
 
 ```markdown
 - implement python programs and output to files
