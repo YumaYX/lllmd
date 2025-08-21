@@ -6,6 +6,8 @@ category: ""
 
 ## Install MCP Agent
 
+MCPエージェントとは、MCPサーバーを通じて外部のデータや機能を利用しながら、LLMの応答や動作を制御する実行主体のことである。
+
 `mcp-client-for-ollama`を使用する。venv上に環境を作る。
 
 ```sh
