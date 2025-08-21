@@ -45,7 +45,7 @@ category: ""
 - CPU: Intel(R) Core(TM) i5-8250U @ 1.60GHz（CPUのみ）
 - メモリ: 7.7GB
     - Swap領域: 40GB
-
+- OS: AlmaLinux 9.6
 ### 実現できること
 
 このドキュメントを読み進めることで、次のことが実現できます。
