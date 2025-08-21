@@ -144,7 +144,7 @@ access <URL>, and summarize it.
 
 1. ホストから、Open webuiにアクセスする。プロンプトを入力する。
 1. Ollamaが使用される。（このOllamaはどこ？ => ホストのOllama）
-    1. 必要に応じて、Ollamaのモデルが、MCPOのAPIを叩く。
+    1. 必要に応じて、Ollamaのモデルが、エージェント経由で、MCPOのAPIを叩く。
     1. MCPサーバーのツールが動く。
     1. Open webuiに返す。
 
