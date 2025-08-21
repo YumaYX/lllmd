@@ -32,7 +32,8 @@ firewall-cmd --permanent --zone=public --add-port=11434/tcp # for ollama
 firewall-cmd --reload
 ```
 
-`Open WebUI` -> `MCPO`経由の`8000`は、ポートを開けなくても疎通する（事実）。
+- `Open WebUI` -> `MCPO`経由の`8000`は、ポートを開けなくても疎通する（事実）。
+  - 外部の物理IPからアクセスしたときは、Open WebUIまでしか辿りつかない。
 
 ---
 
@@ -146,5 +147,6 @@ access <URL>, and summarize it.
     1. Open webuiに返す。
 
 ---
+
 
 ollamaのモデルから、基本的なMCPサーバーを操作することができるようになった。結構大変だな。これをやるのがAIじゃないのか。
