@@ -22,6 +22,18 @@ category: ""
 
 ---
 
+## 0. ファイアウォール設定
+
+```sh
+systemctl start firewalld
+firewall-cmd --permanent --zone=public --add-port=11434/tcp # for ollama
+#firewall-cmd --permanent --zone=public --add-port=8080/tcp # for open-webui
+
+firewall-cmd --reload
+```
+
+---
+
 ## 1. MCPサーバーのインストール
 
 MCPサーバーは、以前の記事にて、インストールを行う。もちろん他の方法もあるが、実績があるため、同じものを使用する。
@@ -92,7 +104,8 @@ podman run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=
 
 1. `localhost:8080`にアクセス
 1. get started、新規登録。適当に入力。おそらく外部のデータベースとは繋がっていないように見える（見えるだけ）。
-1. Ollamaで使用するモデルをダウンロードする。ホストのollamaを使用する方法が見つけられていない。
+1. Ollamaで使用するモデルをダウンロードする。
+    1. ホストのollamaを使用するようにしたため、`ollama pull gemma3:latest`などで、pullする。
 1. MCPツールの設定
     1. ユーザーの`settings`から`tools`を選択
     1. "+"をクリックしてサーバ追加
@@ -125,7 +138,7 @@ access <URL>, and summarize it.
 ## サーバー構成確認
 
 1. ホストから、Open webuiにアクセスする。プロンプトを入力する。
-1. Ollamaが使用される。（このOllamaはどこ？）
+1. Ollamaが使用される。（このOllamaはどこ？ => ホストのOllama）
     1. 必要に応じて、Ollamaのモデルが、MCPOのAPIを叩く。
     1. MCPサーバーのツールが動く。
     1. Open webuiに返す。
