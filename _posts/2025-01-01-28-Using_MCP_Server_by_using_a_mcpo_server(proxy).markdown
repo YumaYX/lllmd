@@ -78,8 +78,10 @@ mcpo --port 8000 --host 0.0.0.0 --config /tmp/mcpconfig.json
 以下のコマンドを実行して、Open WebUIを、動作させる。もちろんCPU onlyモードのため、環境に合わせる。podmanのインストールは[こちら](https://yumayx.github.io/Workshop/コンテナ/2024/01/01/06-10-Podmanコマンド-使用例.html)を参考にする。
 
 ```sh
-podman run -d -p 3000:8080 -v ollama:/root/.ollama -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:ollama
-#podman run <hash id>
+podman stop open-webui
+podman rm open-webui
+
+podman run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 ```
 
 #### References
