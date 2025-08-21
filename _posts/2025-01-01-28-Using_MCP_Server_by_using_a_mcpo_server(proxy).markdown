@@ -150,4 +150,4 @@ access <URL>, and summarize it.
 
 ---
 
-ollamaのモデルから、基本的なMCPサーバーを操作することができるようになった。
+Ollamaのモデルから、基本的なMCPサーバーを操作することができるようになった。
