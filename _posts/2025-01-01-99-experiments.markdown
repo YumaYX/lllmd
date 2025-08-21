@@ -6,13 +6,11 @@ category: ""
 
 # Experiments
 
-LLM（大規模言語モデル）を用いた改善ループ、モデルサイズによる実行時間、RAG（Retrieval-Augmented Generation）の限界についての実験記録。
-
----
-
 ## 1. 自動改善ループ実験
 
 ### 概要
+
+LLM（大規模言語モデル）を用いた改善ループ、モデルサイズによる実行時間、RAG（Retrieval-Augmented Generation）の限界についての実験記録。
 
 プログラムを自動生成し、それを実行 → エラーや改善提案をプロンプトとして再入力 → 再生成 …という改善ループを試みた。
 
@@ -41,7 +39,7 @@ LLM（大規模言語モデル）を用いた改善ループ、モデルサイ�
 
 ```text
 hello
-````
+```
 
 ### モデル別応答時間（`gemma3`）
 
@@ -94,3 +92,25 @@ MCP ServerのToolを使うようにプロンプトを書いても、Toolを使�
   - 1ショット目指すよりは、小刻みに生成するのか
 
 などが考えられる。ハードウェアリソースが無いため、試行回数限られてくる。
+
+---
+
+## 5. gemma3:27b x MCPサーバー
+
+以下のプロンプトで、実施。
+
+```markdown
+- implement python programs and output to files
+  - directory is in /home/user/myproject.
+  - supply the changes to files by using mcp server tools: write_file, edit_file, create_directory.
+  - you can access internet by using mcp server tool: fetch, if you need.
+- program behavior
+  * Using `https://api.openbd.jp/v1/get?isbn=`, create a function that takes an ISBN, accesses the URL, and retrieves the JSON.
+  * Create a function that formats and outputs the retrieved JSON nicely.
+  * Using the ISBNs of three books as examples, display the information.
+```
+
+- ほとんど指示通りに作成された。３つのサンプルのISBNはハルシーネーションで出鱈目。
+- MCPサーバーでの、ファイルは自動で、出力はされなかった。
+
+ハードウェアリソースの限界。
