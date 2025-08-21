@@ -32,7 +32,7 @@ firewall-cmd --permanent --zone=public --add-port=11434/tcp # for ollama
 firewall-cmd --reload
 ```
 
-Open Webui -> MCPO経由の8000は、ポートを開けなくても、疎通する（事実）。
+`Open WebUI` -> `MCPO`経由の`8000`は、ポートを開けなくても疎通する（事実）。
 
 ---
 
