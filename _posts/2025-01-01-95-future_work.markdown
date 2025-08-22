@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Future work"
+category: ""
+---
+
+# Future Work
+
+- 自作MCPサーバーツールの実装
+- ハードウェアリソースを増強したうえでの検証
