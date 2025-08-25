@@ -1,0 +1,49 @@
+---
+layout: post
+title: OCR
+category: ""
+---
+
+# OCR x gemma3
+
+Gemma と Ollama を活用して OCR（文字認識）を行い、画像からテキストを抽出する方法。使う気はなかったが、使用例の記事を見つけたので、トライ。
+
+OCRだけでなく、画像を説明させることもできる、できた。
+
+# 例:OCR
+
+1. `ss.png`として、画像を保存。
+
+```sh
+ollama run gemma3 "answer only. extract text from this picture ./ss.png"
+```
+
+## ss.png
+
+> ![]({{ site.baseurl }}/assets/images/ss.png)
+  - from <https://en.wikipedia.org/wiki/Mac_(computer)>
+
+## output
+
+```
+$ ollama run gemma3 "answer only. extract text from this picture ./ss.png"
+Added image './ss.png'
+Mac is a brand of personal computers designed and
+marketed by Apple since 1984. The name is short for
+Macintosh (its official name until 1999), a reference to
+the McIntosh apple. The current product lineup includes
+the MacBook Air and MacBook Pro laptops, and the iMac,
+Mac Mini, Mac Studio, and Mac Pro desktops. Macs are
+currently sold with Apple’s UNIX-based macOS operating
+system, which is not licensed to other manufacturers and
+exclusively bundled with Mac computers. This operating
+system replaced Apple’s original Macintosh operating
+system, which has variously been named System, Mac OS,
+and Classic Mac OS.
+
+$
+```
+
+## Refrence
+
+- <https://qiita.com/te_yama/items/ac2fd873fd162d80cbf7>
