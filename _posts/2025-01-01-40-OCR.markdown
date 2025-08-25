@@ -21,7 +21,8 @@ ollama run gemma3 "answer only. extract text from this picture ./ss.png"
 ## ss.png
 
 > ![]({{ site.baseurl }}/assets/images/ss.png)
-  - from <https://en.wikipedia.org/wiki/Mac_(computer)>
+
+from <https://en.wikipedia.org/wiki/Mac_(computer)>
 
 ## output
 
@@ -44,6 +45,6 @@ and Classic Mac OS.
 $
 ```
 
-## Refrence
+## Reference
 
 - <https://qiita.com/te_yama/items/ac2fd873fd162d80cbf7>
