@@ -4,6 +4,8 @@ title: JSON Format
 category: ""
 ---
 
+# JSON Format
+
 回答を全てJSONで返して欲しい。
 
 ollamaのコマンドに`--format json`をつけると、レスポンスがjsonフォーマットとなる。
