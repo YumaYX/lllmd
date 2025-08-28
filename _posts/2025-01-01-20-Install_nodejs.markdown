@@ -4,6 +4,8 @@ title: "Install nodejs"
 category: ""
 ---
 
+# Install Node.js
+
 MCPサーバーをインストール/動作させるために、Node.jsをインストールする。
 
 ## Check and Clean Env.
