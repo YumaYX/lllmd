@@ -19,19 +19,19 @@ ollama run gemma3n "hi" --format json
 ### フォーマットにJSONを指定した場合
 
 ```
-~  ollama run gemma3n "hi" --format json
+~ $ ollama run gemma3n "hi" --format json
 {
   "answer": "Hi there! 👋 How can I help you today?"
 }
 
-~  
+~ $ 
 
 ```
 
 ### フォーマットを指定しない場合
 
 ```
-~  ollama run gemma3n "hi"              
+~ $ ollama run gemma3n "hi"              
 Hi there! 😊 
 
 How can I help you today?  
@@ -43,7 +43,7 @@ chat, or something else?  Just let me know!
 
 
 
-~  
+~ $ 
 ```
 
 - modelfileにパラメーターとして記載しても、エラーとなる。そのため、引数にフォーマットを取る。
