@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Using MCP Server with MCPO server(proxy)"
+title: "Using MCP Server with MCPO"
 category: ""
 ---
 
