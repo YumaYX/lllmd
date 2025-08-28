@@ -5,3 +5,7 @@ body {
 .navbar {
   background-color: #fbfb02;  
 }
+
+span.marker {
+    background-color: #000000ee;
+}
