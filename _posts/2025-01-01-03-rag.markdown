@@ -91,6 +91,7 @@ EOF
 
 # モデルのダウンロード（埋め込み用と生成用）
 ollama pull gemma3n
+ollama pull nomic-embed-text
 ```
 
 ---
