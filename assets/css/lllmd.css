@@ -1,11 +1,41 @@
 body {
-  background-color: #fbfb02;
+  background-color: #000;
+  color: #fff;
+}
+
+a,p,li,h1, h2,h3,h4,h5 {
+  color: #fff;
+}
+
+a:hover {
+  color: #fff;
 }
 
 .navbar {
-  background-color: #fbfb02;  
+  background-color: #fff;  
+}
+
+.navbar a {
+  color: #000;
 }
 
 span.marker {
-    background-color: #000000ee;
+    background-color: #ffffffff;
 }
+
+hr {
+  border: solid 0.5px #e0e0e0;
+}
+
+code {
+  background-color: #fff;
+  border: none;
+  color: #000;
+  font-family: 'Intel One Mono', monospace;
+}
+
+pre > code {
+  overflow-x: auto;
+  font-family: 'Intel One Mono', monospace;
+}
+
