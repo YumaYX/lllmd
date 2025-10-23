@@ -6,3 +6,5 @@ layout: default
 
 {% for post in site.posts reversed %}
 1. [{{ index }} {{ post.title }}]({{ site.baseurl }}{{ post.url }}){% endfor %}
+
+`lllmd`: Local Large Language Model Documents
