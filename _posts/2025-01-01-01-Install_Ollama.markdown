@@ -32,7 +32,9 @@ curl -fsSL https://ollama.com/install.sh | sh
   プロンプトを抜けても serve は動き続け、API経由でモデルを呼び出せる状態が維持されます。
 1. systemctl でサーバー状態の操作が可能
   Ollama サーバーの状態を制御するには以下のコマンドを使用します。
-  `sudo systemctl status ollama   # 状態の確認` `sudo systemctl start ollama    # サーバーの起動` `sudo systemctl stop ollama     # サーバーの停止`
+  - `sudo systemctl status ollama   # 状態の確認`
+  - `sudo systemctl start ollama    # サーバーの起動`
+  - `sudo systemctl stop ollama     # サーバーの停止`
 
 1. モデルは事前に pull しておく必要がある
   使用したいモデルは、事前にローカルにダウンロード（pull）しておきます。
