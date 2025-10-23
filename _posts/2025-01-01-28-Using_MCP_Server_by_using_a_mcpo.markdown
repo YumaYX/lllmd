@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Using MCP Server with MCPO"
+title: "MCP-to-OpenAPI Proxy Serverの使用"
 category: ""
 ---
 

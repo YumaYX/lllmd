@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Install MCP Server"
+title: "MCP Serverのインストール"
 category: ""
 ---
 

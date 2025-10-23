@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Install nodejs"
+title: "nodejsのインストール"
 category: ""
 ---
 

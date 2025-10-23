@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Install MCP Agent"
+title: "MCP Agentのインストール"
 category: ""
 ---
 

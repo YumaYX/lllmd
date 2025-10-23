@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Install Ollama"
+title: "Ollamaのインストール"
 category: ""
 ---
 

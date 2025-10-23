@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ollama with API"
+title: "OllamaのAPI"
 category: ""
 ---
 

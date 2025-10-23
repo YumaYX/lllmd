@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "zram"
+title: "圧縮スワップzram"
 category: ""
 ---
 

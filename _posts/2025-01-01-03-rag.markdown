@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Simple RAG"
+title: "簡単なRAG"
 category: ""
 ---
 
