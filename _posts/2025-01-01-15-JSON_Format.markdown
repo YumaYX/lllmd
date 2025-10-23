@@ -1,6 +1,6 @@
 ---
 layout: post
-title: JSON Format
+title: JSONフォーマットでの出力
 category: ""
 ---
 
