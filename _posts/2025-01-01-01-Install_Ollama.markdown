@@ -21,6 +21,14 @@ Ollamaは、クラウドに依存せずに自分のPC上で大規模言語モデ
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
+### バージョンを指定したインストール
+
+バージョン指定してインストールする場合は、[リリースページ](https://github.com/ollama/ollama/releases)を確認して、変数`OLLAMA_VERSION`を指定することで、インストール可能となる。プリリリースもインストールできる。
+
+```sh
+curl -fsSL https://ollama.com/install.sh | OLLAMA_VERSION=0.13.3 sh
+```
+
 インストール後、以下のようにしてモデルを実行可能です。
 `ollama run gemma3 "hello"`
 このコマンドで gemma3 モデルを使って "hello" を送信します。
