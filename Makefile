@@ -1,5 +1,5 @@
 s:	clean install
-	bundle exec jekyll server --host=0.0.0.0 --port 4007
+	bundle exec jekyll server --host=0.0.0.0 --port 4004
 
 install:
 	bundle install
@@ -22,5 +22,5 @@ com:
 port:
 	sudo dnf -y install firewalld
 	sudo systemctl restart firewalld
-	sudo firewall-cmd --permanent --zone=public --add-port=4007/tcp
+	sudo firewall-cmd --permanent --zone=public --add-port=4004/tcp
 	sudo firewall-cmd --reload
