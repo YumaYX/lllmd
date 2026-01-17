@@ -1,0 +1,70 @@
+---
+layout: post
+title: "Codexの使用"
+category: ""
+---
+
+# Codex
+
+Codexとは
+
+> Codex CLI is OpenAI’s coding agent that you can run locally from your terminal. It can read, change, and run code on your machine in the selected directory. It’s open source and built in Rust for speed and efficiency.
+
+OpenAI が提供する ローカル実行型のコーディングエージェントです。
+ターミナルから起動し、以下のようなことを自然言語で指示できます。
+
+- ソースコードの 読み取り
+- コードの 生成・修正・削除
+- テストやビルドなどの コマンド実行
+- リファクタリングやバグ修正
+- プロジェクト構成の理解と説明
+
+<https://developers.openai.com/codex/cli/>
+
+## Reference
+
+[Ollamaと連携してOpenAI Codex CLIをローカルで試す - たねやつの木](https://www.taneyats.com/entry/try-codex-cli-with-ollama#%E4%BA%8B%E5%89%8D%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%AA%E3%82%82%E3%81%AE)
+
+## インストール方法
+
+```sh
+# as root
+dnf -y update
+dnf install zstd -y
+dnf remove -y nodejs npm
+dnf module -y enable nodejs:24
+dnf install -y nodejs npm
+npm install -g @openai/codex
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+```sh
+ollama pull rnj-1
+mkdir -p /root/.codex
+cat <<'EOF' | sudo tee  /root/.codex/config.toml
+profile = "rnj-1"
+
+[model_providers.ollama]
+name = "Ollama"
+base_url = "http://127.0.0.1:11434/v1"
+
+[profiles.rnj-1]
+model = "rnj-1"
+model_provider = "ollama"
+EOF
+```
+
+必要に応じて、設定を入れる。
+
+```toml
+reasoning_effort = "minimal"
+```
+
+## 実行
+
+```sh
+codex
+```
+
+ハードウェアリソースが足りないため、ほとんど動作しない:回答が返ってこない。
+
