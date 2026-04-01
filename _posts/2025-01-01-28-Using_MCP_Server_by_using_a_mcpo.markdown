@@ -60,7 +60,6 @@ MCPOは、MCP-to-OpenAPI Proxyのこと。MCPOサーバーであるmcpoについ
 ##### References
 
 - <https://github.com/open-webui/mcpo>
-- <http://bookoffonline.co.jp>
 - <https://juniarto-samsudin.medium.com/building-custom-mcp-tool-and-integrate-it-to-your-self-hosted-llm-through-openwebui-part-3-3268c4fcac6e>
 
 
