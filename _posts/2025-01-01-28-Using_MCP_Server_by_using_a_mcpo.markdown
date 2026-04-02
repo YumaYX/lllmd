@@ -91,7 +91,7 @@ mcpo --port 8000 --host 0.0.0.0 --config /tmp/mcpconfig.json
 
 \# コンテナを使ってしまうと、何が起きてるか追いにくくなる、コンテナ依存で、オーソドックスな手法が使えなくなる可能性があるため、とても嫌う。
 
-以下のコマンドを実行して、Open WebUIを、動作させる。もちろんCPU onlyモードのため、環境に合わせる。podmanのインストールは[こちら](https://yumayx.github.io/Workshop/コンテナ/2024/01/01/06-10-Podmanコマンド-使用例.html)を参考にする。
+以下のコマンドを実行して、Open WebUIを、動作させる。もちろんCPU onlyモードのため、環境に合わせる。podmanのインストールは[こちら](https://yumayx.github.io/Workshop/%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A/2024/01/01/06-8-Podman%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89-%E4%BD%BF%E7%94%A8%E4%BE%8B.html)を参考にする。
 
 ```sh
 podman stop open-webui
