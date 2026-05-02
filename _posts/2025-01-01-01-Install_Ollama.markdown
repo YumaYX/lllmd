@@ -4,16 +4,16 @@ title: "Ollamaのインストール"
 category: ""
 ---
 
-# Ollama の Linux へのインストールと基本使用法
+## Ollama の Linux へのインストールと基本使用法
 
-## Ollamaとは
+### Ollamaとは
 
 Ollamaは、クラウドに依存せずに自分のPC上で大規模言語モデル（LLM）を動かすことを可能にする仕組みです。従来、LLMを利用するにはクラウドサービスを経由するケースが一般的で、そのためにセキュリティやプライバシーに関する懸念がつきまとっていました。Ollamaはその課題に応える形で開発されており、ユーザーはネットワークに依存することなく、機密性の高いデータを外部に出さずに利用することができます。
 
 操作はシンプルで、コマンド一つでモデルを呼び出して対話を始められるため、難しい設定や環境構築を意識する必要はありません。また、MistralやLLaMA、Gemmaといったオープンソースのモデルを選んで試すことができ、用途に応じてモデルを切り替える柔軟性も備えています。さらに、APIを通じて他のアプリケーションやサービスと連携できるため、実験から実務まで幅広い場面で活用可能です。
 
 
-## インストール手順
+### インストール手順
 
 以下のコマンドで、Ollama を Linux にインストールできます。
 ```sh
@@ -21,7 +21,7 @@ Ollamaは、クラウドに依存せずに自分のPC上で大規模言語モデ
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-### バージョンを指定したインストール
+#### バージョンを指定したインストール
 
 バージョン指定してインストールする場合は、[リリースページ](https://github.com/ollama/ollama/releases)を確認して、変数`OLLAMA_VERSION`を指定することで、インストール可能となる。プリリリースもインストールできる。
 
@@ -33,7 +33,7 @@ curl -fsSL https://ollama.com/install.sh | OLLAMA_VERSION=0.13.3 sh
 `ollama run gemma3 "hello"`
 このコマンドで gemma3 モデルを使って "hello" を送信します。
 
-## 使用前に知っておくべきTips（前提事項）
+### 使用前に知っておくべきTips（前提事項）
 
 1. APIはバックグラウンドでserveが動いていれば利用可能
   `ollama run`を実行すると、自動的にバックグラウンドで serve が起動します。
@@ -74,7 +74,7 @@ curl http://localhost:11434/api/generate -d '{
 }'
 ```
 
-# Reference
+## Reference
 
 - <https://ollama.com>
 - <https://developer.mamezou-tech.com/blogs/2025/02/20/ollama_local_llm/>

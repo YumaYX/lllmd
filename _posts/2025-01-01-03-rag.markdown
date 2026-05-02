@@ -4,13 +4,13 @@ title: "簡単なRAG"
 category: ""
 ---
 
-# Simple RAG: LangChain + Ollama + FAISS を使った簡易RAG構成
+## Simple RAG: LangChain + Ollama + FAISS を使った簡易RAG構成
 
 Ollama・LangChain・FAISSを使い、ローカル環境でRAG（検索拡張生成）を構築する手順をまとめた実験です。
 
 ---
 
-## 1. pyenvのインストール
+### 1. pyenvのインストール
 
 Python環境のバージョン管理のため `pyenv` を使用します。
 
@@ -36,7 +36,7 @@ pyenv rehash
 
 ---
 
-## 2. sqlite3のビルド（ChromaDB対応）
+### 2. sqlite3のビルド（ChromaDB対応）
 
 ChromaDBやFAISS利用時の依存として最新版の `sqlite3` を使用します。
 
@@ -52,7 +52,7 @@ export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 ---
 
-## 3. プロジェクト構成
+### 3. プロジェクト構成
 
 RAGプロジェクトを作成します。
 
@@ -74,7 +74,7 @@ pip3.13 install -r requirements.txt
 
 ---
 
-## 4. ドキュメント作成
+### 4. ドキュメント作成
 
 検索対象となるサンプルドキュメント（Markdown形式）を用意します。
 
@@ -96,7 +96,7 @@ ollama pull nomic-embed-text
 
 ---
 
-## 5. スクリプト：build\_index3.py
+### 5. スクリプト：build\_index3.py
 
 RAGの構築と問い合わせ処理を行うPythonスクリプトです。
 
@@ -163,7 +163,7 @@ for doc in result["source_documents"]:
 
 ---
 
-## 6. 実行
+### 6. 実行
 
 ```sh
 python3.13 build_index3.py
@@ -171,7 +171,7 @@ python3.13 build_index3.py
 
 ---
 
-## 7. 実行結果（例）
+### 7. 実行結果（例）
 
 ```
 ✅ 読み込んだファイル数: 1

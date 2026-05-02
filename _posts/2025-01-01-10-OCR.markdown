@@ -4,7 +4,7 @@ title: OCR
 category: ""
 ---
 
-# OCR x gemma3
+## OCR x gemma3
 
 `Gemma`と`Ollama`を活用して OCR（文字認識）を行う。画像からテキストを抽出する方法。OCRを使う気はなかったが、使用例の記事を見つけたので、トライ。
 
@@ -12,7 +12,7 @@ OCRだけでなく、画像に写っている内容を説明させることも�
 
 精度については、画像の内容や記述内容に依存して、安定した結果が得られるとは言い難い。
 
-# 例:OCR
+## 例:OCR
 
 1. 画像を、`ss.png`として保存。
 
@@ -20,13 +20,13 @@ OCRだけでなく、画像に写っている内容を説明させることも�
 ollama run gemma3 "answer only. extract text from this picture ./ss.png"
 ```
 
-## ss.png
+### ss.png
 
 > ![]({{ site.baseurl }}/assets/images/ss.png)
 
 from <https://en.wikipedia.org/wiki/Mac_(computer)>
 
-## output
+### output
 
 ```
 $ ollama run gemma3 "answer only. extract text from this picture ./ss.png"
@@ -47,6 +47,6 @@ and Classic Mac OS.
 $
 ```
 
-## Reference
+### Reference
 
 - <https://qiita.com/te_yama/items/ac2fd873fd162d80cbf7>

@@ -4,7 +4,7 @@ title: "圧縮スワップzram"
 category: ""
 ---
 
-# zramの導入
+## zramの導入
 
 OllamaをCPUモードで動かす際にスワップ領域を大量に使用していたため、圧縮スワップのzramを導入する。
 
@@ -28,7 +28,7 @@ swapon -s
 - `systemctl daemon-reload`で、再起動せずに設定を適用する。
 
 
-### zramなし
+#### zramなし
 
 ```sh
 swapoff /dev/zram0
@@ -47,7 +47,7 @@ sys	0m0.137s
 user@y ~$ 
 ```
 
-### zramあり
+#### zramあり
 
 ```sh
 systemctl daemon-reload

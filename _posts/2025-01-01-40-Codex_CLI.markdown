@@ -4,7 +4,7 @@ title: "Codexの使用"
 category: ""
 ---
 
-# Codex
+## Codex
 
 Codexとは
 
@@ -21,11 +21,11 @@ OpenAI が提供する ローカル実行型のコーディングエージェン
 
 <https://developers.openai.com/codex/cli/>
 
-## Reference
+### Reference
 
 [Ollamaと連携してOpenAI Codex CLIをローカルで試す - たねやつの木](https://www.taneyats.com/entry/try-codex-cli-with-ollama#%E4%BA%8B%E5%89%8D%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%AA%E3%82%82%E3%81%AE)
 
-## インストール方法
+### インストール方法
 
 ```sh
 # as root
@@ -60,7 +60,7 @@ EOF
 reasoning_effort = "minimal"
 ```
 
-## 実行
+### 実行
 
 ```sh
 codex

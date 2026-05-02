@@ -4,7 +4,7 @@ title: "MCP Agentのインストール"
 category: ""
 ---
 
-## Install MCP Agent
+### Install MCP Agent
 
 MCPエージェントとは、MCPサーバーを通じて外部のデータや機能を利用しながら、LLMの応答や動作を制御する実行主体のことである。
 
@@ -20,7 +20,7 @@ pip3 install --upgrade ollmcp
 
 - <https://github.com/jonigl/mcp-client-for-ollama>
 
-## Test Running
+### Test Running
 
 MCPサーバーをかませず、実行してみる。`qwen2.5:7b`がデフォルトのため、事前にpullする。
 
@@ -36,9 +36,9 @@ ollmcp
 
 - <https://ollama.com/library/qwen2.5>
 
-## Run with MCP Server
+### Run with MCP Server
 
-### Make a Server Config
+#### Make a Server Config
 
 - 許可するディレクトリ
   - /home/user/myproject
@@ -68,7 +68,7 @@ cat <<'EOF' > /tmp/mcpconfig.json
 EOF
 ```
 
-### Test with MCP Server(File System)
+#### Test with MCP Server(File System)
 
 ```sh
 ollmcp -j /tmp/mcpconfig.json
@@ -77,7 +77,7 @@ ollmcp -j /tmp/mcpconfig.json
 
 `list files`だけでは足りず、ディレクトリの指定を求められた。
 
-## Run MCP Server with qwen2.5:14b
+### Run MCP Server with qwen2.5:14b
 
 ```sh
 ollama pull qwen2.5:14b
@@ -88,7 +88,7 @@ ollmcp -j /tmp/mcpconfig.json -m qwen2.5:14b
 ```
 
 
-### GUI/デスクトップをアプリを使わない理由
+#### GUI/デスクトップをアプリを使わない理由
 
 理由としては、いくつかある。
 

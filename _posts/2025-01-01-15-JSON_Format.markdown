@@ -4,7 +4,7 @@ title: JSONフォーマットでの出力
 category: ""
 ---
 
-# JSON Format
+## JSON Format
 
 回答を全てJSONで返して欲しい。
 
@@ -14,11 +14,11 @@ ollamaのコマンドに`--format json`をつけると、レスポンスがjson�
 ollama run gemma3n "hi" --format json
 ```
 
-## 出力の比較
+### 出力の比較
 
 インターネットで言われているように、フォーマットを指定すると、回答の量が少なくなることがわかる。１度しか確認していない。
 
-### フォーマットにJSONを指定した場合
+#### フォーマットにJSONを指定した場合
 
 ```
 ~ $ ollama run gemma3n "hi" --format json
@@ -30,7 +30,7 @@ ollama run gemma3n "hi" --format json
 
 ```
 
-### フォーマットを指定しない場合
+#### フォーマットを指定しない場合
 
 ```
 ~ $ ollama run gemma3n "hi"              

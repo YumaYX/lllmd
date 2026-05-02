@@ -4,19 +4,19 @@ title: "MCP-to-OpenAPI Proxy Serverの使用"
 category: ""
 ---
 
-# MCP-to-OpenAPI Proxy Server
+## MCP-to-OpenAPI Proxy Server
 
 以前の記事では、特定のLLMのモデルしか使用できなかった。それ以外のモデルを使用したいため、環境を構築する。
 
 ほとんど、リファレンスを参考にした。
 
-##### Reference
+###### Reference
 
 [Open WebUIとMCPOでローカルLLMにMCPツールを使ってもらう](https://zenn.dev/pkkudo/articles/mcpo-for-local-llm)
 
 ---
 
-### 構成
+#### 構成
 
 構成を簡単に表現する。すべて同じホスト上に組み立てる。
 
@@ -24,7 +24,7 @@ category: ""
 
 ---
 
-## 0. ファイアウォール設定
+### 0. ファイアウォール設定
 
 ```sh
 systemctl start firewalld
@@ -39,7 +39,7 @@ firewall-cmd --reload
 
 ---
 
-## 1. MCPサーバーのインストール
+### 1. MCPサーバーのインストール
 
 MCPサーバーは、以前の記事にて、インストールを行う。もちろん他の方法もあるが、実績があるため、同じものを使用する。
 
@@ -47,9 +47,9 @@ MCPサーバーは、以前の記事にて、インストールを行う。も�
 
 ---
 
-## 2. MCPOサーバーのインストール
+### 2. MCPOサーバーのインストール
 
-#### MCPOサーバーとは？
+##### MCPOサーバーとは？
 
 MCPOは、MCP-to-OpenAPI Proxyのこと。MCPOサーバーであるmcpoについて、
 
@@ -57,13 +57,13 @@ MCPOは、MCP-to-OpenAPI Proxyのこと。MCPOサーバーであるmcpoについ
 
 プロクシに仲介してもらわないと、MCPサーバーのツールがうまく動作しない。
 
-##### References
+###### References
 
 - <https://github.com/open-webui/mcpo>
 - <https://juniarto-samsudin.medium.com/building-custom-mcp-tool-and-integrate-it-to-your-self-hosted-llm-through-openwebui-part-3-3268c4fcac6e>
 
 
-### MCPOサーバーのインストールコマンド
+#### MCPOサーバーのインストールコマンド
 
 参考先のコマンドをほとんど参考にしている。
 
@@ -73,7 +73,7 @@ python3 -m venv .venv && source .venv/bin/activate && pip install -U pip
 pip install mcpo ; pip install -U mcpo
 ```
 
-### MCPOサーバー起動
+#### MCPOサーバー起動
 
 MCPサーバーのコンフィグを指定する。
 
@@ -83,7 +83,7 @@ mcpo --port 8000 --host 0.0.0.0 --config /tmp/mcpconfig.json
 
 ---
 
-## 3. Open WebUI
+### 3. Open WebUI
 
 プロンプト入力画面として、Open WebUIを採用する。
 
@@ -100,11 +100,11 @@ podman rm open-webui
 podman run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 ```
 
-#### References
+##### References
 
 - <https://github.com/open-webui/open-webui>
 
-### 起動と設定手順/項目
+#### 起動と設定手順/項目
 
 1. `localhost:8080`にアクセス
 1. get started、新規登録。適当に入力。おそらく外部のデータベースとは繋がっていないように見える（見えるだけ）。
@@ -117,13 +117,13 @@ podman run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=
         - 更新ボタンを押して、問題ないか確認できる。
         - 使用するツール分だけ追加する。
 
-#### その他設定
+##### その他設定
 
 - `ctx_num`を大きくすると良いのかも。
 
 ---
 
-### 確認
+#### 確認
 
 以下の設定が済んだら、確認する。
 
@@ -139,7 +139,7 @@ access <URL>, and summarize it.
 
 ---
 
-## サーバー構成確認
+### サーバー構成確認
 
 1. ホストから、Open webuiにアクセスする。プロンプトを入力する。
 1. Ollamaが使用される。（このOllamaはどこ？ => ホストのOllama）
