@@ -70,7 +70,7 @@ RAGを用いて、Rubyのドキュメントをベースに、スクリプトの�
 
 irbで実行させた結果を`gemma3:27b`に食わせて、説明させた。CPU onlyモードであるため、３、４日かかった。
 
-- <https://yumayx.github.io/rubydemodoc/>
+- <https://yumayx.github.io/YS124/>
 
 ---
 
