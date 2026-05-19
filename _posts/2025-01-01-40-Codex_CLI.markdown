@@ -69,6 +69,12 @@ codex
 codex --oss -m rnj-1 --local-provider ollama
 ```
 
+```sh
+codex --oss -m gemma4 --local-provider ollama
+
+codex mcp add filesystem -- npx -y @modelcontextprotocol/server-filesystem ~/a
+```
+
 - ハードウェアリソースが足りないため、ほとんど動作しない:回答が返ってこない。
   - rnj-1で、`print("hello")`を出すのに15分
 - `config.toml`で名前が衝突するエラーが出る可能性がある。コンフィグを作成せずに、モデルを指定すれば動作する。
