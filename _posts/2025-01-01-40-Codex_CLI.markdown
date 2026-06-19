@@ -67,6 +67,9 @@ codex
 
 #または
 codex --oss -m rnj-1 --local-provider ollama
+
+# or
+codex --oss -m gemma4:31b-cloud --local-provider ollama --sandbox workspace-write
 ```
 
 ```sh
